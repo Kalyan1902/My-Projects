@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #FF7E5F, #D4FFEF);
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            color: #000;
+            font-size: 120%;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            left: 50%;
+            bottom: 1%; /* Adjust the distance from the bottom as needed */
+            transform: translate(-50%, 0%);
+            z-index: 1; /* Ensure the text container is above the video */
+        }
+
+        .class_name {
+            color: #b84a0b;
+            font-size: 150%;
+            font-weight: bold;
+        }
+
+        figure {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            margin: 0;
+        }
+
+        img, iframe {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        figcaption {
+            text-align: center;
+            color: #333;
+            font-size: 80%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <figure>
+        <!-- Display the uploaded image -->
+        <img src="{{ image_path }}" alt="Uploaded Image">
+
+        <!-- Display the YouTube video based on predicted class -->
+        <!-- Display the YouTube video based on predicted class -->
+{% if predicted_class_name == 'AlluArjun' %}
+    <iframe id="youtubeVideo" width="100%" height="100%" src="https://www.youtube.com/embed/dvCdzog2Jis?autoplay=1" frameborder="0" allowfullscreen></iframe>
+{% elif predicted_class_name == 'MaheshBabu' %}
+    <iframe id="youtubeVideo" width="100%" height="100%" src="https://www.youtube.com/embed/Ue-uX4w7i-E?autoplay=1" frameborder="0" allowfullscreen></iframe>
+{% elif predicted_class_name == 'NagaChaithanya' %}
+    <iframe id="youtubeVideo" width="100%" height="100%" src="https://www.youtube.com/embed/htCVXc7hvx0?autoplay=1" frameborder="0" allowfullscreen></iframe>
+{% elif predicted_class_name == 'Nani' %}
+    <iframe id="youtubeVideo" width="100%" height="100%" src="https://www.youtube.com/embed/WcOf-pvKGn0?autoplay=1" frameborder="0" allowfullscreen></iframe>
+{% elif predicted_class_name == 'NTR' %}
+    <iframe id="youtubeVideo" width="100%" height="100%" src="https://www.youtube.com/embed/v0G4PicJptA?autoplay=1" frameborder="0" allowfullscreen></iframe>
+{% elif predicted_class_name == 'Prabhas' %}
+    <iframe id="youtubeVideo" width="100%" height="100%" src="https://www.youtube.com/embed/bUR_FKt7Iso?autoplay=1" frameborder="0" allowfullscreen></iframe>
+{% elif predicted_class_name == 'RamCharan' %}
+    <iframe id="youtubeVideo" width="100%" height="100%" src="https://www.youtube.com/embed/2_BkCz3OnlY?autoplay=1" frameborder="0" allowfullscreen></iframe>
+{% elif predicted_class_name == 'Vijaydevarakonda' %}
+    <iframe id="youtubeVideo" width="100%" height="100%" src="https://www.youtube.com/embed/xI1bC4JA-MI?autoplay=1" frameborder="0" allowfullscreen></iframe>
+<!-- Add more conditions for other classes as needed -->
+{% else %}
+    <p>No video available for this class</p>
+{% endif %}
+
+
+        <!-- Add a caption using figcaption -->
+        <figcaption id="caption">Chosen image and video for {{ predicted_class_name }}</figcaption>
+    </figure>
+
+    <!-- Container for the text -->
+    <div class="container">
+        <h2>Result</h2>
+        <h2>Predicted celebrity is <span class="class_name">{{ predicted_class_name }}</span></h2>
+    </div>
+
+    <!-- JavaScript to hide the container after 5 seconds -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var container = document.querySelector(".container");
+
+        // Hide the container after 5 seconds
+        setTimeout(function() {
+            container.style.display = "none";
+        }, 5000);
+    });
+    </script>
+</body>
+</html>
